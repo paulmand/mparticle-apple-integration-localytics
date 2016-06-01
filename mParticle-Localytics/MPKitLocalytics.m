@@ -92,7 +92,7 @@
         }
     }
 
-    multiplyByOneHundred = [configuration[@"trackClvAsRawValue"] caseInsensitiveCompare:@"true"] == NSOrderedSame;
+    multiplyByOneHundred = [configuration[@"trackClvAsRawValue"] caseInsensitiveCompare:@"true"] != NSOrderedSame;
 
     _configuration = configuration;
     _started = startImmediately;
@@ -107,7 +107,7 @@
 - (void)dealloc {
     if (_started) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
-    }    
+    }
 }
 
 - (void)start {
