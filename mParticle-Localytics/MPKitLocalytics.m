@@ -246,6 +246,13 @@
     return execStatus;
 }
 
+- (MPKitExecStatus *)setUserAttribute:(NSString *)key values:(NSArray<NSString *> *)values {
+    [Localytics setValue:values forProfileAttribute:key];
+    
+    MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
+    return execStatus;
+}
+
 - (MPKitExecStatus *)incrementUserAttribute:(NSString *)key byValue:(NSNumber *)value {
     MPKitExecStatus *execStatus;
     NSNumber *customDimensionValue = self.customDimensions[key];
