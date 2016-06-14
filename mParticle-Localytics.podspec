@@ -13,16 +13,15 @@ Pod::Spec.new do |s|
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-localytics.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticles"
 
-    s.ios.deployment_target = "7.0"
+    s.ios.deployment_target = "8.0"
     s.ios.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
     s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.1'
-    s.ios.dependency 'Localytics', '3.8.0'
+    s.ios.dependency 'Localytics', '4.0.0'
     s.frameworks = 'SystemConfiguration', 'CoreLocation', 'AdSupport'
     s.library = 'z', 'sqlite3'
 
     s.ios.pod_target_xcconfig = {
         'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
-        'OTHER_LDFLAGS' => '$(inherited) -l"Localytics"'
     }
-    s.ios.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -l"Localytics" -framework "CoreLocation"' }
+    s.ios.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -framework "CoreLocation"' }
 end

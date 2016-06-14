@@ -31,7 +31,7 @@
     #import "MPKitRegister.h"
 #endif
 
-#import "Localytics.h"
+#import <Localytics/Localytics.h>
 
 @interface MPKitLocalytics() {
     BOOL multiplyByOneHundred;
@@ -207,7 +207,7 @@
 }
 
 - (MPKitExecStatus *)receivedUserNotification:(NSDictionary *)userInfo {
-    [Localytics handlePushNotificationOpened:userInfo];
+    [Localytics handleNotification:userInfo];
 
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
@@ -248,7 +248,7 @@
 
 - (MPKitExecStatus *)setUserAttribute:(NSString *)key values:(NSArray<NSString *> *)values {
     [Localytics setValue:values forProfileAttribute:key];
-    
+
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
