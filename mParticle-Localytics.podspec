@@ -12,16 +12,28 @@ Pod::Spec.new do |s|
     s.author           = { "mParticle" => "support@mparticle.com" }
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-localytics.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticles"
+    s.default_subspec  = "DefaultVersion"
 
-    s.ios.deployment_target = "8.0"
-    s.ios.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
-    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
-    s.ios.dependency 'Localytics', '4.1.0'
-    s.frameworks = 'SystemConfiguration', 'CoreLocation', 'AdSupport'
-    s.library = 'z', 'sqlite3'
+    def s.subspec_common(ss)
+        ss.ios.deployment_target = "8.0"
+        ss.ios.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
+        ss.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
+        ss.frameworks = 'SystemConfiguration', 'CoreLocation', 'AdSupport'
+        ss.library = 'z', 'sqlite3'
 
-    s.ios.pod_target_xcconfig = {
-        'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
-    }
-    s.ios.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -framework "CoreLocation"' }
+        ss.ios.pod_target_xcconfig = {
+            'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
+        }
+        ss.ios.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -framework "CoreLocation"' }
+    end
+
+    s.subspec 'DefaultVersion' do |ss|
+        ss.ios.dependency 'Localytics', '4.1.0'
+        s.subspec_common(ss)
+    end
+
+    s.subspec 'UserDefinedVersion' do |ss|
+        ss.ios.dependency 'Localytics'
+        s.subspec_common(ss)
+    end
 end
