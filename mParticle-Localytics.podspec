@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Localytics"
-    s.version          = "6.12.3"
+    s.version          = "6.12.6"
     s.summary          = "Localytics integration for mParticle"
 
     s.description      = <<-DESC
@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
 
     s.ios.deployment_target = "8.0"
     s.ios.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
-    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.12.3'
+    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.12.6'
     s.frameworks = 'SystemConfiguration', 'CoreLocation', 'AdSupport'
     s.library = 'z', 'sqlite3'
-    s.ios.dependency 'Localytics', '4.2.0'
+    s.ios.dependency 'Localytics', '4.3.0'
 
     s.ios.pod_target_xcconfig = {
         'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
