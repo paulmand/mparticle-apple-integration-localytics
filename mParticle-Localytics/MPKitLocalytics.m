@@ -172,10 +172,19 @@
 }
 
 - (MPKitExecStatus *)logEvent:(MPEvent *)event {
-    if (event.info) {
-        [Localytics tagEvent:event.name attributes:event.info];
+    BOOL hasDuration = event.duration && ![event.duration isEqualToNumber:@0];
+    
+    if (!hasDuration) {
+        if (event.info) {
+            [Localytics tagEvent:event.name attributes:event.info];
+        }
+        else {
+            [Localytics tagEvent:event.name];
+        }
     } else {
-        [Localytics tagEvent:event.name];
+        NSMutableDictionary<NSString *, id> *info = [event.info mutableCopy] ?: [NSMutableDictionary dictionary];
+        info[@"event_duration"] = event.duration;
+        [Localytics tagEvent:event.name attributes:[info copy]];
     }
 
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
