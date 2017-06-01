@@ -204,6 +204,7 @@
     return execStatus;
 }
 
+#if TARGET_OS_IOS == 1
 - (MPKitExecStatus *)setDeviceToken:(NSData *)deviceToken {
     [Localytics setPushToken:deviceToken];
 
@@ -217,6 +218,7 @@
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
+#endif
 
 #if TARGET_OS_IOS == 1 && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 - (nonnull MPKitExecStatus *)userNotificationCenter:(nonnull UNUserNotificationCenter *)center didReceiveNotificationResponse:(nonnull UNNotificationResponse *)response {
@@ -311,14 +313,18 @@
     return execStatus;
 }
 
+#if TARGET_OS_IOS == 1
 - (MPKitExecStatus *)openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceLocalytics) returnCode:MPKitReturnCodeSuccess];
     [Localytics handleTestModeURL:url];
     return execStatus;
 }
+#endif
 
 - (void)didEnterBackground:(NSNotification *)notification {
+#if TARGET_OS_IOS == 1
     [Localytics dismissCurrentInAppMessage];
+#endif
     [Localytics closeSession];
     [Localytics upload];
 }

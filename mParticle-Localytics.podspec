@@ -25,4 +25,16 @@ Pod::Spec.new do |s|
         'FRAMEWORK_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
     }
     s.ios.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -framework "CoreLocation"' }
+
+    s.tvos.deployment_target = "9.0"
+    s.tvos.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
+    s.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.14.0'
+    s.tvos.dependency 'Localytics-tvOS', '1.0.2'
+
+    s.tvos.pod_target_xcconfig = {
+        'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
+        'FRAMEWORK_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
+    }
+    s.tvos.user_target_xcconfig = { 'OTHER_LDFLAGS' => '$(inherited) -framework "CoreLocation"' }
+
 end
