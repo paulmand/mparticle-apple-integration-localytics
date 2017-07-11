@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.14.0'
     s.frameworks = 'SystemConfiguration', 'CoreLocation', 'AdSupport'
     s.library = 'z', 'sqlite3'
-    s.ios.dependency 'Localytics', '4.3.0'
+    s.ios.dependency 'Localytics', '4.4.0'
 
     s.ios.pod_target_xcconfig = {
         'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     s.tvos.deployment_target = "9.0"
     s.tvos.source_files      = 'mParticle-Localytics/*.{h,m,mm}'
     s.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.14.0'
-    s.tvos.dependency 'Localytics-tvOS', '1.0.2'
+    s.tvos.dependency 'Localytics', '4.4.0'
 
     s.tvos.pod_target_xcconfig = {
         'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Localytics/**',
